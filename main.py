@@ -9,12 +9,15 @@ they differ, so a truncated or corrupted copy can never pass silently.
 """
 
 import hashlib
+import os
 import shutil
 import sys
 from pathlib import Path
 
 SOURCE = Path(__file__).with_name("entry.png")
-DEST_DIR = Path("/output")
+# Inside the grader the output dir is /output; outside it, the env var
+# stands in for /output (same convention as the kit's starter main.ts).
+DEST_DIR = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
 DEST = DEST_DIR / "entry.png"
 
 
